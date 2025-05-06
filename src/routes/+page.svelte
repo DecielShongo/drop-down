@@ -1,2 +1,8 @@
-<h1>Welcome to Dropdown</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+	import DropDown from '../DropDown.svelte';
+</script>
+
+<main class="flex h-screen w-full flex-col items-center">
+	<h1 class="mt-5 text-5xl font-semibold">Frontend Challenge #1</h1>
+	<DropDown />
+</main>
