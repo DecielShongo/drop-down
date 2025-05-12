@@ -23,31 +23,40 @@
 			}
 		} else if (e.code == 'Enter') {
 			console.log('Enter');
+			console.log(selected);
 			selectOption(selectedTmp);
 		}
 	}
 </script>
 
-<button
-	class="mt-36 flex h-12 w-3xl flex-row items-center justify-between rounded-md border-2"
+<div
+	class="flex flex-col items-center justify-center"
+	role="listbox"
+	tabindex="0"
 	onkeydown={(e) => handleKeyDown(e)}
 >
-	{selected}
-</button>
-<ul>
-	{#each options as option}
-		<li>
-			<button
-				class="cursor-pointer"
-				class:border-2={option == selectedTmp}
-				onclick={() => {
-					selectOption(option);
-					index = options.indexOf(option);
-				}}
-				onkeydown={(e) => handleKeyDown(e)}
-			>
-				{option}
-			</button>
-		</li>
-	{/each}
-</ul>
+	<button class="mt-36 flex h-12 w-3xl flex-row items-center justify-between rounded-md border-2">
+		{selected}
+	</button>
+	<ul>
+		{#each options as option}
+			<li>
+				<button
+					class="cursor-pointer"
+					class:border-2={option == selectedTmp}
+					onclick={() => {
+						selectOption(option);
+						index = options.indexOf(option);
+					}}
+					onkeydown={(e) => {
+						if (e.code === 'Enter') {
+							e.preventDefault();
+						}
+					}}
+				>
+					{option}
+				</button>
+			</li>
+		{/each}
+	</ul>
+</div>
