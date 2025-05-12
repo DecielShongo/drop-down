@@ -30,12 +30,12 @@
 </script>
 
 <div
-	class="flex flex-col items-center justify-center"
+	class="mt-36 flex flex-col items-center justify-start"
 	role="listbox"
 	tabindex="0"
 	onkeydown={(e) => handleKeyDown(e)}
 >
-	<button class="mt-36 flex h-12 w-3xl flex-row items-center justify-between rounded-md border-2">
+	<button class=" flex h-12 w-3xl flex-row items-center justify-between rounded-md border-2">
 		{selected}
 	</button>
 	<ul>
