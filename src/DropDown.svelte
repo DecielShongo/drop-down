@@ -1,8 +1,12 @@
 <script lang="ts">
+	import downArrow from '$lib/assets/down-arrow.png';
+
 	let { placeholder, options } = $props();
 	let selected = $state(placeholder);
 	let selectedTmp = $state(placeholder);
 	let index = $state(options.length);
+	let src = downArrow;
+	let isOpen = $state(false);
 
 	function selectOption(option: string) {
 		selected = option;
@@ -30,15 +34,26 @@
 </script>
 
 <div
-	class="mt-36 flex flex-col items-center justify-start"
+	class="mt-36 flex cursor-pointer flex-col items-center justify-start"
 	role="listbox"
 	tabindex="0"
 	onkeydown={(e) => handleKeyDown(e)}
+	onfocusout={(e) => {
+		if (!e.relatedTarget || !(e.currentTarget as Node).contains(e.relatedTarget as Node)) {
+			isOpen = false;
+		}
+	}}
 >
-	<button class=" flex h-12 w-3xl flex-row items-center justify-between rounded-md border-2">
-		{selected}
+	<button
+		class="flex h-12 w-3xl cursor-pointer flex-row items-center justify-between rounded-md border-2"
+		onfocus={() => (isOpen = true)}
+	>
+		<p>
+			{selected}
+		</p>
+		<img {src} alt="down-arrow" class="h-10" />
 	</button>
-	<ul>
+	<ul class:hidden={!isOpen}>
 		{#each options as option}
 			<li>
 				<button
@@ -53,6 +68,7 @@
 							e.preventDefault();
 						}
 					}}
+					onfocus={() => (isOpen = true)}
 				>
 					{option}
 				</button>
