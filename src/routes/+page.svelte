@@ -1,6 +1,6 @@
 <script>
 	import DropDown from '../DropDown.svelte';
-	let options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
+	let options = ['Option 1', 'Option 2', 'Option 3', 'Option 4', 'Option 5'];
 	let placeholder = 'Select option';
 </script>
 

@@ -32,7 +32,7 @@
 			console.log('Enter');
 			console.log(selected);
 			selectOption(selectedTmp);
-			isOpen = false;
+			isOpen = !isOpen;
 		}
 	}
 </script>
@@ -69,12 +69,12 @@
 					class="first:rounded-t-lg last:rounded-b-lg last:shadow-md hover:bg-gray-100"
 					in:fly={{ delay: i * 100, duration: 400, x: -100 }}
 					out:fade
+					class:bg-amber-200={option == selected}
+					class:text-white={option == selected}
+					class:bg-gray-100={option == selectedTmp && option != selected}
 				>
 					<button
 						class="h-14 w-full cursor-pointer"
-						class:bg-amber-200={option == selected}
-						class:text-white={option == selected}
-						class:bg-gray-100={option == selectedTmp && option != selected}
 						onclick={() => {
 							selectOption(option);
 							index = options.indexOf(option);
