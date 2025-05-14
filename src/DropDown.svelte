@@ -1,6 +1,5 @@
 <script lang="ts">
 	import downArrow from '$lib/assets/down-arrow.png';
-	import { text } from '@sveltejs/kit';
 	import { fly, fade } from 'svelte/transition';
 
 	let { placeholder, options } = $props();
@@ -66,7 +65,7 @@
 		{#each options as option, i}
 			{#if isOpen}
 				<li
-					class="first:rounded-t-xl last:rounded-b-xl last:shadow-md"
+					class="transition-colors first:rounded-t-xl last:rounded-b-xl last:shadow-md"
 					in:fly={{ delay: i * 100, duration: 300, x: -100 }}
 					out:fade
 					class:bg-orange-300={option == selected}
