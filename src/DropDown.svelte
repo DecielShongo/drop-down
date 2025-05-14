@@ -38,7 +38,7 @@
 </script>
 
 <div
-	class="mt-36 flex w-2xl cursor-pointer flex-col items-center justify-start"
+	class="mt-36 flex w-xl cursor-pointer flex-col items-center justify-start"
 	role="listbox"
 	tabindex="0"
 	onkeydown={(e) => handleKeyDown(e)}
@@ -49,7 +49,7 @@
 	}}
 >
 	<button
-		class="flex h-14 w-full cursor-pointer flex-row items-center justify-between rounded-lg border-2 px-4"
+		class="flex h-14 w-full cursor-pointer flex-row items-center justify-between rounded-xl border-1 px-6 transition-all hover:shadow-md focus:border-orange-300 focus:outline-2 focus:outline-orange-300"
 		onclick={() => (isOpen = !isOpen)}
 		onkeydown={(e) => {
 			if (e.code === 'Enter') {
@@ -57,24 +57,32 @@
 			}
 		}}
 	>
-		<p class:text-gray-500={selected === placeholder}>
+		<p class:text-gray-500={selected === placeholder} class="text-lg">
 			{selected}
 		</p>
-		<img {src} alt="down-arrow" class="h-6" />
+		<img {src} alt="down-arrow" class="h-6 transition-all duration-300" class:rotate-180={isOpen} />
 	</button>
-	<ul class="w-full">
+	<ul class="mt-6 w-full rounded-xl">
 		{#each options as option, i}
 			{#if isOpen}
 				<li
-					class="first:rounded-t-lg last:rounded-b-lg last:shadow-md hover:bg-gray-100"
-					in:fly={{ delay: i * 100, duration: 400, x: -100 }}
+					class="first:rounded-t-xl last:rounded-b-xl last:shadow-md"
+					in:fly={{ delay: i * 100, duration: 300, x: -100 }}
 					out:fade
-					class:bg-amber-200={option == selected}
+					class:bg-orange-300={option == selected}
 					class:text-white={option == selected}
 					class:bg-gray-100={option == selectedTmp && option != selected}
+					onmouseenter={() => {
+						selectedTmp = option;
+						index = options.indexOf(option);
+					}}
+					onmouseleave={() => {
+						selectedTmp = selected;
+						index = options.indexOf(selected);
+					}}
 				>
 					<button
-						class="h-14 w-full cursor-pointer"
+						class="h-14 w-full cursor-pointer px-6 text-left text-lg font-light"
 						onclick={() => {
 							selectOption(option);
 							index = options.indexOf(option);
