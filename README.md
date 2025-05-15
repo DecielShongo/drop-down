@@ -27,10 +27,10 @@ Ein animiertes, vollständig per Tastatur und Maus bedienbares Dropdown-Menü in
 ## 🎹 Tastatursteuerung
 
 | Taste       | Funktion                    |
-| ----------- | --------------------------- | --- |
+| ----------- | --------------------------- |
 | `ArrowDown` | Auswahl nach unten bewegen  |
 | `ArrowUp`   | Auswahl nach oben bewegen   |
-| `Enter`     | Aktuelle Auswahl bestätigen |     |
+| `Enter`     | Aktuelle Auswahl bestätigen |
 
 ---
 
