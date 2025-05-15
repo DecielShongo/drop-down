@@ -4,14 +4,14 @@
 
 	let { placeholder, options } = $props();
 	let selected = $state(placeholder);
-	let selectedTmp = $state(placeholder);
+	let highlighted = $state(placeholder);
 	let index = $state(options.length);
 	let src = downArrow;
 	let isOpen = $state(false);
 
 	function selectOption(option: string) {
 		selected = option;
-		selectedTmp = option;
+		highlighted = option;
 	}
 	function handleKeyDown(e: KeyboardEvent) {
 		if (e.code == 'ArrowDown' || e.code == 'ArrowUp') {
@@ -23,12 +23,12 @@
 				index = 0;
 			}
 			if (index < 0) {
-				selectedTmp = options[options.length + index];
+				highlighted = options[options.length + index];
 			} else {
-				selectedTmp = options[index];
+				highlighted = options[index];
 			}
 		} else if (e.code == 'Enter') {
-			selectOption(selectedTmp);
+			selectOption(highlighted);
 			isOpen = !isOpen;
 		}
 	}
@@ -69,13 +69,13 @@
 					out:fade|global
 					class:bg-orange-300={option == selected}
 					class:text-white={option == selected}
-					class:bg-gray-100={option == selectedTmp && option != selected}
+					class:bg-gray-100={option == highlighted && option != selected}
 					onmouseenter={() => {
-						selectedTmp = option;
+						highlighted = option;
 						index = options.indexOf(option);
 					}}
 					onmouseleave={() => {
-						selectedTmp = selected;
+						highlighted = selected;
 						index = options.indexOf(selected);
 					}}
 				>
