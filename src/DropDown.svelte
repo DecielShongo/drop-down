@@ -28,8 +28,6 @@
 				selectedTmp = options[index];
 			}
 		} else if (e.code == 'Enter') {
-			console.log('Enter');
-			console.log(selected);
 			selectOption(selectedTmp);
 			isOpen = !isOpen;
 		}
@@ -61,13 +59,14 @@
 		</p>
 		<img {src} alt="down-arrow" class="h-6 transition-all duration-300" class:rotate-180={isOpen} />
 	</button>
-	<ul class="mt-6 w-full rounded-xl">
-		{#each options as option, i}
-			{#if isOpen}
+
+	{#if isOpen}
+		<ul class="mt-6 w-full rounded-xl shadow-md" in:fly={{ duration: 500, y: -20 }} out:fade>
+			{#each options as option, i}
 				<li
-					class="transition-colors first:rounded-t-xl last:rounded-b-xl last:shadow-md"
-					in:fly={{ delay: i * 100, duration: 300, x: -100 }}
-					out:fade
+					class="transition-colors first:rounded-t-xl last:rounded-b-xl"
+					in:fly|global={{ delay: i * 100, duration: 300, x: -50 }}
+					out:fade|global
 					class:bg-orange-300={option == selected}
 					class:text-white={option == selected}
 					class:bg-gray-100={option == selectedTmp && option != selected}
@@ -97,7 +96,7 @@
 						{option}
 					</button>
 				</li>
-			{/if}
-		{/each}
-	</ul>
+			{/each}
+		</ul>
+	{/if}
 </div>
